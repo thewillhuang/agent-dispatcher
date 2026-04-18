@@ -1,0 +1,18 @@
+[Unit]
+Description=Agent Dispatcher for agentneo - picks up Ready tickets from Kanban
+After=network.target
+
+[Service]
+Type=oneshot
+Environment="PATH=/usr/local/bin:/usr/bin:/bin"
+Environment="GITHUB_TOKEN=${GITHUB_TOKEN}"
+ExecStart=/usr/bin/python3 /opt/agent-dispatcher/agent-dispatcher.py
+StandardOutput=journal
+StandardError=journal
+User=agent-dispatcher
+
+[Install]
+WantedBy=multi-user.target
+
+# Alternative: run as a simple cron job every 5 minutes
+# */5 * * * * /usr/bin/python3 /opt/agent-dispatcher/agent-dispatcher.py >> /var/log/agent-dispatcher.log 2>&1
