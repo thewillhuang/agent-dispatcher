@@ -1,0 +1,14 @@
+# Agent Dispatcher Cron Job Configuration
+# Runs every 5 minutes to pick up Ready tickets from the Kanban board
+
+# Add this to your crontab:
+# */5 * * * * /usr/bin/python3 /path/to/agent-dispatcher.py >> /var/log/agent-dispatcher.log 2>&1
+
+# For systemd timer alternative, see systemd service below
+
+# Environment variables needed:
+# - GITHUB_TOKEN: GitHub personal access token with repo access
+# - PATH: Include gh CLI path
+
+# Logging:
+# All output is logged to syslog via cron, or redirect to file as shown above
